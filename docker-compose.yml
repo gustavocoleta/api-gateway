@@ -1,0 +1,27 @@
+version: '3'
+services:
+  app1:
+    build: ./app1
+    environment:
+      - PORT=5001
+      - NAME=App1
+    ports:
+    - "5001:5001"
+  app2:
+    build: ./app2
+    ports:
+    - "5002:5002"
+  app3:
+    build: ./app3
+    environment:
+      - PORT=5003
+      - NAME=App3
+    ports:
+    - "5003:5003"
+  nginx:
+    build: ./nginx
+    ports:
+    - "8080:80"
+    depends_on:
+    - app1
+    - app2
